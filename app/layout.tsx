@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
-
+import { Analytics } from '@vercel/analytics/next';
 const display = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
@@ -36,7 +36,11 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${mono.variable} ${body.variable}`}
     >
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        
+        {children}
+        <Analytics />
+        </body>
     </html>
   );
 }
