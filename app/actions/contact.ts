@@ -6,7 +6,7 @@ import {
   contactSchema,
   type ContactActionResult,
 } from "@/lib/contact-schema";
-import { getSupabaseAdmin } from "@/lib/supabase/server";
+import { getContactCollection } from "@/lib/contact";
 
 function hashIp(ip: string) {
   return createHash("sha256").update(ip).digest("hex");
@@ -38,30 +38,22 @@ export async function submitContact(
   const userAgent = headerStore.get("user-agent") ?? null;
 
   try {
-    const supabase = getSupabaseAdmin();
-    const { error } = await supabase.from("contact_submissions").insert({
+    const collection = await getContactCollection();
+    await collection.insertOne({
       name: data.name,
       email: data.email,
       message: data.message,
-      company: data.company || null,
-      project_type: data.project_type || null,
+      company: data.company ?? null,
+      projectType: data.project_type ?? null,
       source: "portfolio",
-      page_url: data.page_url || null,
-      user_agent: userAgent,
-      ip_hash: hashIp(ip),
+      pageUrl: data.page_url ?? null,
+      userAgent,
+      ipHash: hashIp(ip),
       status: "new",
+      createdAt: new Date(),
     });
 
-    if (error) {
-      console.error("contact insert failed:", error.message);
-      return {
-        ok: false,
-        error: "Something went wrong. Please try again in a moment.",
-      };
-    }
-
     await maybeSendEmail(data);
-
     return { ok: true };
   } catch (err) {
     console.error("contact submit error:", err);
