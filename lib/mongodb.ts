@@ -28,12 +28,8 @@ function createClientPromise(): Promise<MongoClient> {
   return client.connect();
 }
 
-/** Shared MongoClient promise — cached in development for Next.js HMR. */
-export default function getClientPromise(): Promise<MongoClient> {
-  return createClientPromise();
-}
-
+/** Uses the database name from the URI path (e.g. ...mongodb.net/portfolio?...). */
 export async function getDb(): Promise<Db> {
   const client = await createClientPromise();
-  return client.db(process.env.MONGODB_DB || "portfolio");
+  return client.db();
 }
