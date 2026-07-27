@@ -42,6 +42,7 @@ export async function submitContact(
     await collection.insertOne({
       name: data.name,
       email: data.email,
+      phone: data.phone ?? null,
       message: data.message,
       company: data.company ?? null,
       projectType: data.project_type ?? null,
@@ -67,6 +68,7 @@ export async function submitContact(
 async function maybeSendEmail(data: {
   name: string;
   email: string;
+  phone?: string;
   message: string;
   company?: string;
   project_type?: string;
@@ -93,6 +95,7 @@ async function maybeSendEmail(data: {
         text: [
           `Name: ${data.name}`,
           `Email: ${data.email}`,
+          `Phone: ${data.phone || "—"}`,
           `Company: ${data.company || "—"}`,
           `Type: ${data.project_type || "—"}`,
           "",

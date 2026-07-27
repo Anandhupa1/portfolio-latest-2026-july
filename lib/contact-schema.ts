@@ -27,6 +27,16 @@ export const contactSchema = z.object({
     .min(2, "Name is too short")
     .max(80, "Name is too long"),
   email: z.string().trim().email("Enter a valid email").max(120),
+  phone: z.preprocess(
+    emptyToUndef,
+    z
+      .string()
+      .trim()
+      .min(7, "Enter a valid mobile number")
+      .max(20, "Mobile number is too long")
+      .regex(/^[+\d][\d\s().-]{6,19}$/, "Enter a valid mobile number")
+      .optional()
+  ),
   message: z
     .string()
     .trim()

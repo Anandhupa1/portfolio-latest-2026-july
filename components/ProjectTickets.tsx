@@ -21,8 +21,8 @@ export default function ProjectTickets() {
           Project tickets
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-paperDim">
-          Production systems — marketplaces, commerce, and the performance work
-          underneath them.
+          Selected builds — marketplaces, multi-store commerce, and the systems
+          that keep them fast and reliable.
         </p>
       </div>
 

@@ -5,15 +5,8 @@ import MagneticButton from "./MagneticButton";
 
 const metrics = [
   {
-    label: "Document scans/query",
-    display: (
-      <>
-        <CountUp to={12000} />
-        <span className="ml-2 font-mono text-xs font-normal text-paperDimmer">
-          down from 40M+
-        </span>
-      </>
-    ),
+    label: "Production systems",
+    display: <CountUp to={3} />,
   },
   {
     label: "Locales shipped",

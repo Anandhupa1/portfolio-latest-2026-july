@@ -31,6 +31,7 @@ export default function ContactForm() {
     const payload = {
       name: String(fd.get("name") ?? ""),
       email: String(fd.get("email") ?? ""),
+      phone: String(fd.get("phone") ?? ""),
       message: String(fd.get("message") ?? ""),
       company: String(fd.get("company") ?? ""),
       project_type: String(fd.get("project_type") ?? ""),
@@ -115,6 +116,19 @@ export default function ContactForm() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
+        <Field id="phone" label="Mobile" error={fieldErrors.phone?.[0]}>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            inputMode="tel"
+            maxLength={20}
+            className={fieldClass}
+            placeholder="+91 98765 43210"
+            disabled={pending}
+          />
+        </Field>
         <Field id="company" label="Company" error={fieldErrors.company?.[0]}>
           <input
             id="company"
@@ -127,27 +141,28 @@ export default function ContactForm() {
             disabled={pending}
           />
         </Field>
-        <Field
-          id="project_type"
-          label="What do you need?"
-          error={fieldErrors.project_type?.[0]}
-        >
-          <select
-            id="project_type"
-            name="project_type"
-            className={clsx(fieldClass, "appearance-none")}
-            defaultValue=""
-            disabled={pending}
-          >
-            <option value="">Select (optional)</option>
-            {PROJECT_TYPES.map((t) => (
-              <option key={t} value={t}>
-                {projectTypeLabels[t]}
-              </option>
-            ))}
-          </select>
-        </Field>
       </div>
+
+      <Field
+        id="project_type"
+        label="What do you need?"
+        error={fieldErrors.project_type?.[0]}
+      >
+        <select
+          id="project_type"
+          name="project_type"
+          className={clsx(fieldClass, "appearance-none")}
+          defaultValue=""
+          disabled={pending}
+        >
+          <option value="">Select (optional)</option>
+          {PROJECT_TYPES.map((t) => (
+            <option key={t} value={t}>
+              {projectTypeLabels[t]}
+            </option>
+          ))}
+        </select>
+      </Field>
 
       <Field
         id="message"

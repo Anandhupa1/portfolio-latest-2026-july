@@ -15,8 +15,8 @@ export const projects: ProjectTicket[] = [
     title: "Amberhouse",
     status: "LIVE",
     paragraphs: [
-      "UAE real estate marketplace spanning buyers, brokers, non-residents, and VIP investors — with full English/Arabic support and RTL layout.",
-      "Built registration flows for four distinct user types, PayTabs payment integration, AWS ECS deployment, and SEO foundations (sitemaps, hreflang).",
+      "Real estate marketplace with bilingual EN/AR experience and full RTL support — spanning property discovery, registration, and booking flows.",
+      "Shipped multi-role onboarding, PayTabs payments, timezone-correct scheduling, AWS ECS deployment, and SEO foundations (sitemaps, hreflang).",
     ],
     stack: [
       "Next.js",
@@ -28,9 +28,9 @@ export const projects: ProjectTicket[] = [
       "EN/AR RTL",
     ],
     metrics: [
-      { label: "Locales", value: "EN/AR full RTL" },
-      { label: "User flows", value: "4 registration paths" },
-      { label: "Booking", value: "UTC+4 via Luxon" },
+      { label: "Locales", value: "EN / AR · full RTL" },
+      { label: "Onboarding", value: "Multi-role registration" },
+      { label: "Payments", value: "PayTabs integrated" },
     ],
   },
   {
@@ -38,23 +38,23 @@ export const projects: ProjectTicket[] = [
     title: "V Perfumes",
     status: "LIVE",
     paragraphs: [
-      "GCC multi-store e-commerce brought in for a MongoDB Atlas performance crisis: a $lookup type-mismatch driving ~40M document scans per query.",
-      "Fixed the type mismatch alongside missing indexes across several collections, and built a Redis-backed shared cache handler for multi-instance ECS cache invalidation.",
+      "Multi-store e-commerce platform for the GCC region — catalog, checkout, and store operations across instances on AWS ECS.",
+      "Owned backend performance work: query tuning, indexing strategy, and a Redis-backed shared cache layer for consistent responses across scaled services.",
     ],
-    stack: ["MongoDB Atlas", "Redis", "Express", "AWS ECS", "Node.js"],
+    stack: ["Node.js", "Express", "MongoDB Atlas", "Redis", "AWS ECS"],
     metrics: [
-      { label: "Query scans", value: "~40M → 12k" },
-      { label: "Indexes", value: "3 collections fixed" },
-      { label: "Cache", value: "Shared Redis / ECS" },
+      { label: "Architecture", value: "Multi-store commerce" },
+      { label: "Data layer", value: "Indexed · query-tuned" },
+      { label: "Cache", value: "Redis across ECS" },
     ],
   },
   {
     id: "PROJ-003",
-    title: "New Commerce Build",
+    title: "Commerce Platform",
     status: "IN PROGRESS",
     paragraphs: [
-      "Multi-language, multi-store commerce app built from scratch — no template — with Next.js App Router and Express.",
-      "TanStack Query for server state, Zustand for client state, shadcn/ui for the interface layer, and next-intl for localization from day one.",
+      "Multi-language, multi-store commerce app built from scratch with Next.js App Router and Express — no off-the-shelf template.",
+      "TanStack Query for server state, Zustand for client state, shadcn/ui for the interface, and next-intl for localization from day one.",
     ],
     stack: [
       "Next.js App Router",
@@ -65,8 +65,8 @@ export const projects: ProjectTicket[] = [
       "next-intl",
     ],
     metrics: [
-      { label: "Approach", value: "No commerce template" },
-      { label: "Architecture", value: "Multi-lang / multi-store" },
+      { label: "Approach", value: "Custom architecture" },
+      { label: "Scope", value: "Multi-lang · multi-store" },
       { label: "State", value: "TanStack + Zustand" },
     ],
   },
