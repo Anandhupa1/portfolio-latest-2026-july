@@ -16,6 +16,10 @@ export type ContactSubmission = {
   createdAt: Date;
 };
 
+export type ContactSubmissionDoc = ContactSubmission & {
+  _id: import("mongodb").ObjectId;
+};
+
 export async function getContactCollection(): Promise<
   Collection<ContactSubmission>
 > {
