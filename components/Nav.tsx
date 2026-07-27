@@ -42,7 +42,7 @@ export default function Nav() {
             className="inline-block h-2 w-2 animate-pulse rounded-full bg-teal"
             aria-hidden
           />
-          ANANDHU.SYS
+          ANANDHU P A
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
