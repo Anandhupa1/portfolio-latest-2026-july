@@ -41,6 +41,14 @@ export default async function AdminDashboardPage() {
           </li>
           <li>
             <Link
+              href="/admin/media"
+              className="font-mono text-sm text-paperDim transition-colors hover:text-signal"
+            >
+              Manage media library →
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/"
               rel="noopener noreferrer"
               target="_blank"

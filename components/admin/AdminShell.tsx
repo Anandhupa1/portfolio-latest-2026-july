@@ -14,6 +14,7 @@ type Props = {
 const NAV = [
   { href: "/admin", label: "Dashboard", exact: true },
   { href: "/admin/messages", label: "Messages", exact: false },
+  { href: "/admin/media", label: "Media", exact: false },
 ] as const;
 
 export default function AdminShell({ email, children }: Props) {
