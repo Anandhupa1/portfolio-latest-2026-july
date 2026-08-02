@@ -14,5 +14,5 @@ export const loginSchema = z.object({
 });
 
 export type AuthActionResult =
-  | { ok: true; verificationKey?: string }
+  | { ok: true }
   | { ok: false; error: string; fieldErrors?: Record<string, string[]> };

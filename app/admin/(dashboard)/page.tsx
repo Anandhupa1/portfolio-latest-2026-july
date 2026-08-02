@@ -1,17 +1,13 @@
+import Link from "next/link";
 import { getContactCollection } from "@/lib/contact";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
   const collection = await getContactCollection();
-  const [total, newest, recent] = await Promise.all([
+  const [total, newest] = await Promise.all([
     collection.countDocuments(),
     collection.countDocuments({ status: "new" }),
-    collection
-      .find({})
-      .sort({ createdAt: -1 })
-      .limit(10)
-      .toArray(),
   ]);
 
   return (
@@ -30,42 +26,30 @@ export default async function AdminDashboardPage() {
         <StatCard label="New messages" value={newest} accent />
       </div>
 
-      <section>
-        <h2 className="mb-4 font-mono text-xs uppercase tracking-widest text-paperDimmer">
-          Recent contact submissions
+      <section className="rounded-lg border border-line bg-surface px-5 py-6">
+        <h2 className="font-mono text-xs uppercase tracking-widest text-paperDimmer">
+          Quick links
         </h2>
-        {recent.length === 0 ? (
-          <p className="rounded-lg border border-line bg-surface px-5 py-8 text-sm text-paperDim">
-            No submissions yet.
-          </p>
-        ) : (
-          <ul className="divide-y divide-line overflow-hidden rounded-lg border border-line bg-surface">
-            {recent.map((item) => (
-              <li key={item._id.toString()} className="px-5 py-4">
-                <div className="flex flex-wrap items-baseline justify-between gap-2">
-                  <p className="font-display font-semibold text-paper">
-                    {item.name}
-                  </p>
-                  <p className="font-mono text-[11px] text-paperDimmer">
-                    {item.createdAt
-                      ? new Date(item.createdAt).toLocaleString()
-                      : "—"}
-                  </p>
-                </div>
-                <p className="mt-1 font-mono text-xs text-paperDim">
-                  {item.email}
-                  {item.phone ? ` · ${item.phone}` : ""}
-                </p>
-                <p className="mt-2 line-clamp-2 text-sm text-paperDim">
-                  {item.message}
-                </p>
-                <p className="mt-2 font-mono text-[10px] uppercase tracking-wider text-signal">
-                  {item.status}
-                </p>
-              </li>
-            ))}
-          </ul>
-        )}
+        <ul className="mt-4 space-y-2">
+          <li>
+            <Link
+              href="/admin/messages"
+              className="font-mono text-sm text-paperDim transition-colors hover:text-signal"
+            >
+              View contact messages →
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="font-mono text-sm text-paperDim transition-colors hover:text-signal"
+            >
+              Open portfolio site →
+            </Link>
+          </li>
+        </ul>
       </section>
     </div>
   );

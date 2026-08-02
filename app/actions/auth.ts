@@ -12,7 +12,7 @@ import {
   createSessionToken,
   setSessionCookie,
 } from "@/lib/auth/session";
-import { createVerificationKey, getUsersCollection, type AdminUser } from "@/lib/auth/users";
+import { getUsersCollection, type AdminUser } from "@/lib/auth/users";
 
 export async function registerAdmin(
   raw: unknown
@@ -36,17 +36,15 @@ export async function registerAdmin(
       return { ok: false, error: "An account with this email already exists." };
     }
 
-    const verificationKey = createVerificationKey();
     const passwordHash = await hashPassword(password);
     await users.insertOne({
       email,
       passwordHash,
       isVerified: false,
-      verificationKey,
       createdAt: new Date(),
     } as AdminUser);
 
-    return { ok: true, verificationKey };
+    return { ok: true };
   } catch (err) {
     console.error("registerAdmin error:", err);
     return { ok: false, error: "Could not create account. Try again." };
@@ -77,8 +75,7 @@ export async function loginAdmin(raw: unknown): Promise<AuthActionResult> {
     if (!user.isVerified) {
       return {
         ok: false,
-        error:
-          "Account not verified yet. Set isVerified to true in MongoDB (admin_users) to activate.",
+        error: "Need super admin approval to continue login.",
       };
     }
 

@@ -10,11 +10,7 @@ export default function AdminRegisterPage() {
         <h1 className="font-display text-2xl font-semibold text-paper">
           Create account
         </h1>
-        <p className="mt-2 mb-8 text-sm text-paperDim">
-          After registering, set{" "}
-          <code className="text-signal">isVerified: true</code> on the user in
-          MongoDB to unlock sign-in.
-        </p>
+        
         <RegisterForm />
       </div>
     </div>

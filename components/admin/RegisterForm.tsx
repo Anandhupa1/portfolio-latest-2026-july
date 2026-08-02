@@ -36,17 +36,8 @@ export default function RegisterForm() {
           Account created
         </p>
         <p className="text-sm text-paperDim">
-          It is locked until you verify it in MongoDB. Find the user in{" "}
-          <code className="text-signal">admin_users</code> and set{" "}
-          <code className="text-signal">isVerified</code> to{" "}
-          <code className="text-teal">true</code>.
+          Need super admin approval to continue login.
         </p>
-        <div>
-          <p className="admin-label">verificationKey</p>
-          <code className="mt-1 block break-all rounded border border-line bg-ink px-3 py-2 font-mono text-xs text-paper">
-            {result.verificationKey}
-          </code>
-        </div>
         <Link href="/admin/login" className="admin-btn inline-flex">
           Go to sign in
         </Link>
