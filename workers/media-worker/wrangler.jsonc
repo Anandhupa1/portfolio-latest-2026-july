@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "media-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-02",
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    // Public R2 URL (r2.dev subdomain or custom domain). No trailing slash.
+    "MEDIA_PUBLIC_BASE_URL": "https://pub-REPLACE.r2.dev"
+  },
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_BUCKET",
+      "bucket_name": "my-app-images"
+    }
+  ]
+}
